@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Arithmetic Calculator</h1>
-        <form method="post" action="age">
+        <form method="post" action="aritmetic">
             <label>First:</label>
             <input type="text" name="fir" value="${firstNum}" placeholder="12">
             <br>

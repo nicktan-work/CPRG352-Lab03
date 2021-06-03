@@ -72,8 +72,11 @@ public class aritmeticCalcServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //capture the params from the post request (the form)
-        String firstString = request.getParameter("first");
-               String secondString = request.getParameter("second");
+        String firstString = request.getParameter("fir");
+               String secondString = request.getParameter("sec");
+                 int result = 0;
+                 
+                 
         if (firstString == null || firstString.equals("") || secondString == null || secondString.equals("")) {
             request.setAttribute("message", "Invalid");
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalc.jsp").forward(request, response);
@@ -85,7 +88,7 @@ public class aritmeticCalcServlet extends HttpServlet {
             int secondInt = Integer.parseInt(secondString);
             
             String calcButt = request.getParameter("calcButton");
-            int result;
+          
             switch(calcButt){
                 case "+": result = (firstInt + secondInt); break;
                 case "-": result = (firstInt - secondInt); break;
@@ -93,15 +96,16 @@ public class aritmeticCalcServlet extends HttpServlet {
                 case "%": result = (firstInt % secondInt); break;
                 default: System.out.println("error");
             }
-            request.setAttribute("message", secondString);
+            String resultString = Integer.toString(result);
+            request.setAttribute("message", resultString);
 
             //validation: if the params dont exist or if are empty show the form again
             //display the ageCalc JSP
-            getServletContext().getRequestDispatcher("aritmetic").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalc.jsp").forward(request, response);
             return;
         } catch (NumberFormatException e) {
             request.setAttribute("message", "You must enter a number");
-            getServletContext().getRequestDispatcher("aritmetic").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalc.jsp").forward(request, response);
             return;
         }
 
